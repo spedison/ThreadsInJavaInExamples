@@ -1,0 +1,37 @@
+plugins {
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+application {
+    mainClass = 'br.com.spedison.Main'
+}
+
+jar {
+    manifest {
+        attributes(
+//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'br.com.spedison.examplesthreads.Main'
+        )
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.release = 20
+}
